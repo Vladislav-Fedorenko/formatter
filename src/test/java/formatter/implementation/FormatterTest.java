@@ -53,7 +53,7 @@ public class FormatterTest {
                 "\t}\n" +
                 "\tthrow new MyException();\n" +
                 "}\n";
-        assertEquals("wrong", expected, writer.toString());
+        assertEquals("wrong result", expected, writer.toString());
     }
     @Test(expected = FormatException.class)
     public void formatWithIncorrectNumberBranchTest() throws FormatException {
