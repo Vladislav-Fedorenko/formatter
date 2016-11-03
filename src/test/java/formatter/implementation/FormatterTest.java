@@ -3,7 +3,6 @@ package formatter.implementation;
 import closer.CloserException;
 import formatter.FormatException;
 import formatter.Formatable;
-import formatter.implementation.Formatter;
 import org.junit.Before;
 import org.junit.Test;
 import reader.Readable;
