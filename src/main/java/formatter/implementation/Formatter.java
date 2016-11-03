@@ -36,9 +36,8 @@ public class Formatter implements Formatable {
                             countOfTabs--;
                             out.writeChar(readChar);
                             out.writeChar('\n');
-                            writeSpaces(countOfTabs, out);
+                            writeSpaces(countOfTabs - 1, out);
                             buffer = '\n';
-                            isNeededClosedBrace = false;
                             break;
                         case ';':
                             out.writeChar(readChar);
