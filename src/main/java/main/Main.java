@@ -15,7 +15,14 @@ import writer.implementation.stringWriter.StringWriter;
 /**
  * Main class
  */
-public class Main {
+public final class Main {
+
+    /**
+     * Default constructor.
+     */
+    private Main() {
+
+    }
 
     /**
      *
@@ -24,12 +31,14 @@ public class Main {
      */
     public static void main(final String[] args) throws FormatException {
         try {
-            String s = "public char firstChar(String s){           char       first;         if(s!=null){first = s.charAt(0);return first;}}";
+            String s = "public char firstChar(final String s) throws MyException{           " +
+                    "char     first;         if(s!=null){  first = s.charAt(0);" +
+                    "return first;}throw new MyException();}";
             Readable in = new StringReader(s);
             StringWriter out = new StringWriter("");
             Formatable formatter = new Formatter();
             formatter.format(in, out);
-            System.out.print(out.getString());
+            System.out.print(out.toString());
             try {
                 FileReader fileInput = new FileReader("in.txt");
                 FileWriter fileOutput = new FileWriter("out.txt");

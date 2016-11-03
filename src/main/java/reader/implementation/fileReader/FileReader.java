@@ -40,7 +40,7 @@ public class FileReader implements Readable, Closeable {
     }
 
     @Override
-    public char read() throws ReaderException {
+    public char readChar() throws ReaderException {
         try {
             return (char) inputFile.read();
         } catch (IOException e) {
@@ -51,8 +51,7 @@ public class FileReader implements Readable, Closeable {
     @Override
     public boolean isEnd() throws ReaderException {
         try {
-            int count = inputFile.available();
-            return !(count > 0);
+            return !(inputFile.available() > 0);
         } catch (IOException e) {
             throw new ReaderException(e);
         }

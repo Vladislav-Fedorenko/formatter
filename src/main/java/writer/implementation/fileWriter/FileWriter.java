@@ -6,10 +6,7 @@ import closer.CloserException;
 import writer.Writable;
 import writer.WriterException;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 
 /**
  * The class for write thread in file
@@ -35,13 +32,11 @@ public class FileWriter implements Writable, Closeable {
         }
     }
     @Override
-    public final void write(final String s) throws WriterException, CloserException {
+    public final void writeChar(final char c) throws WriterException, CloserException {
         try {
-            outputFile.write(s.getBytes());
+            outputFile.write(c);
         } catch (IOException e) {
             throw new WriterException(e);
-        } finally {
-            close();
         }
     }
 

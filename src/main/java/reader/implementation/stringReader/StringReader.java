@@ -1,7 +1,6 @@
 package reader.implementation.stringReader;
 
 import reader.Readable;
-import reader.ReaderException;
 
 
 /**
@@ -15,24 +14,23 @@ public class StringReader implements Readable {
     /**
      * The current position in the array characters.
      */
-    private int indexOfArray;
+    private int indexOfArray = 0;
     /**
      * Constructor for the string.
      * @param inputString the input string
      */
     public StringReader(final String inputString) {
         this.inputString = inputString.toCharArray();
-        this.indexOfArray = 0;
     }
 
     @Override
-    public char read() throws ReaderException {
+    public char readChar() {
         indexOfArray++;
         return inputString[indexOfArray - 1];
     }
 
     @Override
-    public boolean isEnd() throws ReaderException {
+    public boolean isEnd() {
         return !(indexOfArray < inputString.length);
     }
 }

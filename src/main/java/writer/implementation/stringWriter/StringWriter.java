@@ -21,15 +21,15 @@ public class StringWriter implements Writable {
     }
 
     @Override
-    public final void write(final String s) {
-        stringBuilder.append(s);
+    public final void writeChar(final char c) {
+        stringBuilder.append(c);
     }
 
     /**
      * Method for get working string
      * @return the working string
      */
-    public final String getString() {
+    public final String toString() {
         return stringBuilder.toString();
     }
 }

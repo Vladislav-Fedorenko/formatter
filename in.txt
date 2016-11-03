@@ -1,1 +1,1 @@
-public char firstChar(String s){char           first;         if(s!=null){first = s.charAt(0);return first;}}
+public char firstChar(String s){char           first;         if(s!=null){first = s.charAt(0);return first;}   return;}

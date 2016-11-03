@@ -17,39 +17,54 @@ public class Formatter implements Formatable {
     @Override
     public void format(final Readable in, final Writable out) throws FormatException {
         try {
-            StringBuilder buffer = new StringBuilder("");
-            int countOfTabs = 0;
-            char readChar;
-            while (!in.isEnd()) {
-                readChar = in.read();
-                switch (readChar) {
-                    case '{':
-                        countOfTabs++;
-                        buffer.append(" {\n");
-                        buffer.append(writeSpaces(countOfTabs));
-                        break;
-                    case '}':
-                        countOfTabs--;
-                        buffer.insert(buffer.length() - 1, "}\n");
-                        break;
-                    case ';':
-                        buffer.append(";\n");
-                        buffer.append(writeSpaces(countOfTabs));
-                        break;
-                    case ' ':
-                        if (buffer.charAt(buffer.length() - 1) != ' ' && buffer.charAt(buffer.length() - 1) != '\n' ) {
-                            buffer.append(" ");
-                        }
-                        break;
-                    default:
-                        buffer.append(readChar);
+                boolean isNeededClosedBrace = false;
+                int countOfTabs = 0;
+                char readChar;
+                char buffer = '!'; //simple character
+                while (!in.isEnd()) {
+                    readChar = in.readChar();
+                    switch (readChar) {
+                        case '{':
+                            countOfTabs++;
+                            out.writeChar(' ');
+                            out.writeChar(readChar);
+                            out.writeChar('\n');
+                            writeSpaces(countOfTabs, out);
+                            buffer = '\t';
+                            break;
+                        case '}':
+                            countOfTabs--;
+                            out.writeChar(readChar);
+                            out.writeChar('\n');
+                            writeSpaces(countOfTabs, out);
+                            buffer = '\n';
+                            isNeededClosedBrace = false;
+                            break;
+                        case ';':
+                            out.writeChar(readChar);
+                            out.writeChar('\n');
+                            writeSpaces(countOfTabs - 1, out);
+                            buffer = '\t';
+                            isNeededClosedBrace = true;
+                            break;
+                        case ' ':
+                            if (buffer != ' ' && buffer != '\n' && buffer != '\t') {
+                                out.writeChar(' ');
+                                buffer = ' ';
+                            }
+                            break;
+                        default:
+                            if (isNeededClosedBrace) {
+                                out.writeChar('\t');
+                            }
+                            out.writeChar(readChar);
+                            buffer = readChar;
+                            isNeededClosedBrace = false;
                 }
             }
             if (countOfTabs != 0) {
-                out.write("error: incorrect number of braces");
                 throw new WriterException(new Throwable("error: incorrect number of braces"));
             }
-            out.write(buffer.toString());
         } catch (ReaderException e) {
             throw new FormatException(e);
         } catch (WriterException e) {
@@ -60,16 +75,15 @@ public class Formatter implements Formatable {
     }
 
     /**
-     *
+     * Write TABs to the output stream.
      * @param countOfTabs count of tabs
-     * @return string with a specified number of spaces
+     * @throws WriterException thrown if any errors occur writing
+     * @throws CloserException thrown if any errors occur closing
      */
 
-    private String writeSpaces(final int countOfTabs) {
-        String temp = "";
-        for (int i = 0; i < countOfTabs; i++) {
-            temp += "\t";
+    private void writeSpaces(final int countOfTabs, final Writable out) throws WriterException, CloserException {
+        for (int i = countOfTabs; i > 0; i--) {
+            out.writeChar('\t');
         }
-        return temp;
     }
 }

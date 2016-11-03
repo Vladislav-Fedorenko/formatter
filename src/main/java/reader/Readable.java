@@ -9,7 +9,7 @@ public interface Readable {
      * @return read character
      * @throws ReaderException thrown if any errors occur reading
      */
-    char read() throws ReaderException;
+    char readChar() throws ReaderException;
 
     /**
      * Checks on the end
