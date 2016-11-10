@@ -23,7 +23,6 @@ public final class Main {
     private Main() {
 
     }
-
     /**
      *
      * @param args input arguments
@@ -31,17 +30,17 @@ public final class Main {
      */
     public static void main(final String[] args) throws FormatException {
         try {
-            String s = "public char firstChar(final String s) throws MyException{           " +
-                    "char     first;         if(s!=null){  first = s.charAt(0);" +
-                    "return first;}throw new MyException();}";
+            String s = "       public char firstChar(final String s) throws MyException{          " +
+                    "  char     first; //single line\n        if(s!=null){  first = s.charAt(0);" +
+                    "/*//*****{  ' '   }comment     *\n\tmultiline**/return first;}throw new MyException();}";
             Readable in = new StringReader(s);
             StringWriter out = new StringWriter("");
             Formatable formatter = new Formatter();
             formatter.format(in, out);
             System.out.print(out.toString());
             try {
-                FileReader fileInput = new FileReader("in.txt");
-                FileWriter fileOutput = new FileWriter("out.txt");
+                FileReader fileInput = new FileReader(args[0]);
+                FileWriter fileOutput = new FileWriter(args[1]);
                 formatter.format(fileInput, fileOutput);
                 fileInput.close();
                 fileOutput.close();

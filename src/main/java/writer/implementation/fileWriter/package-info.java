@@ -1,4 +1,4 @@
 /**
- * Contains the implementation on the interface Writable for file
+ * Contains the inheritors on the interface Writable for file
  */
 package writer.implementation.fileWriter;

@@ -1,4 +1,4 @@
 /**
- * Contains the implementation on the interface Readable and Closeable
+ * Contains the inheritors on the interface Readable and Closeable
  */
 package reader.implementation;

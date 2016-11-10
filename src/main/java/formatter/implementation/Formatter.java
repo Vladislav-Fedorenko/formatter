@@ -4,8 +4,13 @@ package formatter.implementation;
 import closer.CloserException;
 import formatter.FormatException;
 import formatter.Formatable;
+import formatter.StylisationOfCode;
+import handler.Handler;
+import handler.HandlerException;
+import handler.inheritors.OtherCharacterHandler;
 import reader.Readable;
 import reader.ReaderException;
+import table.Table;
 import writer.Writable;
 import writer.WriterException;
 
@@ -14,75 +19,45 @@ import writer.WriterException;
  */
 public class Formatter implements Formatable {
 
+    private Handler handler;
+    private OtherCharacterHandler other;
+    private StylisationOfCode style;
+    private Table table;
+
+    /**
+     * Constructor.
+     */
+    public Formatter() {
+        table = new Table();
+        style = new StylisationOfCode();
+        other = new OtherCharacterHandler();
+        handler = null;
+    }
     @Override
     public void format(final Readable in, final Writable out) throws FormatException {
         try {
-                boolean isNeededClosedBrace = false;
-                int countOfTabs = 0;
-                char readChar;
-                char buffer = '!'; //simple character
-                while (!in.isEnd()) {
-                    readChar = in.readChar();
-                    switch (readChar) {
-                        case '{':
-                            countOfTabs++;
-                            out.writeChar(' ');
-                            out.writeChar(readChar);
-                            out.writeChar('\n');
-                            writeSpaces(countOfTabs, out);
-                            buffer = '\t';
-                            break;
-                        case '}':
-                            countOfTabs--;
-                            out.writeChar(readChar);
-                            out.writeChar('\n');
-                            writeSpaces(countOfTabs - 1, out);
-                            buffer = '\n';
-                            break;
-                        case ';':
-                            out.writeChar(readChar);
-                            out.writeChar('\n');
-                            writeSpaces(countOfTabs - 1, out);
-                            buffer = '\t';
-                            isNeededClosedBrace = true;
-                            break;
-                        case ' ':
-                            if (buffer != ' ' && buffer != '\n' && buffer != '\t') {
-                                out.writeChar(' ');
-                                buffer = ' ';
-                            }
-                            break;
-                        default:
-                            if (isNeededClosedBrace) {
-                                out.writeChar('\t');
-                            }
-                            out.writeChar(readChar);
-                            buffer = readChar;
-                            isNeededClosedBrace = false;
+            style.resetAll();
+            char readChar;
+            while (!in.isEnd()) {
+                readChar = in.readChar();
+                handler = table.getHandler(readChar);
+                if (handler != null) {
+                    handler.handle(out, style, readChar);
+                } else {
+                    other.handle(out, style, readChar);
                 }
             }
-            if (countOfTabs != 0) {
-                throw new WriterException(new Throwable("error: incorrect number of braces"));
+            if (style.getCountOfTabs() != 0) {
+                throw new HandlerException(new Throwable("error handle: incorrect number of braces"));
             }
         } catch (ReaderException e) {
             throw new FormatException(e);
-        } catch (WriterException e) {
-            throw new FormatException(e);
         } catch (CloserException e) {
             throw new FormatException(e);
-        }
-    }
-
-    /**
-     * Write TABs to the output stream.
-     * @param countOfTabs count of tabs
-     * @throws WriterException thrown if any errors occur writing
-     * @throws CloserException thrown if any errors occur closing
-     */
-
-    private void writeSpaces(final int countOfTabs, final Writable out) throws WriterException, CloserException {
-        for (int i = countOfTabs; i > 0; i--) {
-            out.writeChar('\t');
+        } catch (WriterException e) {
+            throw new FormatException(e);
+        } catch (HandlerException e) {
+            throw new FormatException(e);
         }
     }
 }

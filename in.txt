@@ -1,1 +1,3 @@
-public char firstChar(String s){char           first;         if(s!=null){first = s.charAt(0);return first;}   return;}
+       public char firstChar(final String s) throws MyException{    char     first; //single line
+              if(s!=null){  first = s.charAt(0);/*//*****{  ''   }comment
+                  multiline**/return first;}throw new MyException();}

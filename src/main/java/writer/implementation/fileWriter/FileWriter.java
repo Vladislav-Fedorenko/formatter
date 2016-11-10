@@ -36,6 +36,7 @@ public class FileWriter implements Writable, Closeable {
         try {
             outputFile.write(c);
         } catch (IOException e) {
+            this.close();
             throw new WriterException(e);
         }
     }

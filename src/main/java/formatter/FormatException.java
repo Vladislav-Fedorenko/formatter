@@ -2,7 +2,7 @@
 package formatter;
 
 /**
- * The exception thrown when any occur formatting errors
+ * The exception thrown when any occur formatting errors.
  */
 public class FormatException extends Throwable {
     /**

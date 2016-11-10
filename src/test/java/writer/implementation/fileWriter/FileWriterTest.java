@@ -5,10 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import writer.WriterException;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -27,8 +24,14 @@ public class FileWriterTest {
         reader = new FileReader(file.getAbsolutePath()); //java.io.FileReader
     }
 
+    @Test(expected = WriterException.class)
+    public void constructorTest() throws CloserException, WriterException {
+        writer = new FileWriter(".");
+        fail();
+    }
     @Test
     public void writeCharTest() throws CloserException, WriterException, IOException {
+
         writer.writeChar('{');
         char actual = (char) reader.read();
         char expected = '{';
