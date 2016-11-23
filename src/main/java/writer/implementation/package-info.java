@@ -1,5 +1,5 @@
 /**
- * Contains the inheritors on the interface Writable
+ * Contains implements on the interface Writable
  *
  */
 package writer.implementation;

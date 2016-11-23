@@ -1,9 +1,8 @@
-package handler.inheritors;
+package handler.defaultCondition;
 
-import closer.CloserException;
-import formatter.StylisationOfCode;
 import handler.Handler;
 import handler.HandlerException;
+import handler.Indent;
 import writer.Writable;
 import writer.WriterException;
 
@@ -13,10 +12,9 @@ import writer.WriterException;
 public class CloseBracketHandler extends Handler {
 
     @Override
-    public void handle(final Writable out, final StylisationOfCode style, final char readChar) throws HandlerException,
-            CloserException, WriterException {
+    public void handle(final Writable out, final Indent indent, final char readChar) throws HandlerException {
         try {
-            if (!needHandleCode(style)) {
+            /*if (!needHandleCode(style)) {
                 out.writeChar(readChar);
                 return;
             }
@@ -24,10 +22,12 @@ public class CloseBracketHandler extends Handler {
             out.writeChar(readChar);
             out.writeChar('\n');
             writeTabs(out, style.getCountOfTabs() - 1);
-            style.setBuffer('\n');
+            style.setBuffer('\n');*/
+            indent.decCurrentIndent();
+            writeIndent(out, (indent.getCurrentIndent() * indent.getCOUNTSPACES()) - 1);
+            out.writeChar(readChar);
+            out.writeChar('\n');
         } catch (WriterException e) {
-            throw new HandlerException(e);
-        } catch (CloserException e) {
             throw new HandlerException(e);
         }
     }

@@ -1,4 +1,4 @@
-package handler.inheritors;
+package handler.defaultCondition;
 
 import closer.CloserException;
 import formatter.FormatException;

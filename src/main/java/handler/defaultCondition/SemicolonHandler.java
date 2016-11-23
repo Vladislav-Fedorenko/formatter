@@ -1,9 +1,8 @@
-package handler.inheritors;
+package handler.defaultCondition;
 
-import closer.CloserException;
-import formatter.StylisationOfCode;
 import handler.Handler;
 import handler.HandlerException;
+import handler.Indent;
 import writer.Writable;
 import writer.WriterException;
 
@@ -12,10 +11,9 @@ import writer.WriterException;
  */
 public class SemicolonHandler extends Handler {
     @Override
-    public void handle(final Writable out, final StylisationOfCode style, final char readChar) throws HandlerException,
-            CloserException, WriterException {
+    public void handle(final Writable out, final Indent indent, final char readChar) throws HandlerException {
         try {
-            if (!needHandleCode(style)) {
+            /*if (!needHandleCode(style)) {
                 out.writeChar(readChar);
                 return;
             }
@@ -23,10 +21,11 @@ public class SemicolonHandler extends Handler {
             out.writeChar('\n');
             writeTabs(out, style.getCountOfTabs() - 1);
             style.setBuffer('\t');
-            style.setNeedCloseBracket(true);
+            style.setNeedCloseBracket(true);*/
+            out.writeChar(readChar);
+            out.writeChar('\n');
+            writeIndent(out, (indent.getCurrentIndent() * indent.getCOUNTSPACES()) - 1);
         } catch (WriterException e) {
-            throw new HandlerException(e);
-        } catch (CloserException e) {
             throw new HandlerException(e);
         }
     }

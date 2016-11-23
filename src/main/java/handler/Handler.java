@@ -10,16 +10,23 @@ import writer.WriterException;
  */
 public abstract class Handler {
     /**
+     * buffer for storage previous read character
+     */
+    private static char buffer = 0;  //clear!!!!!!!!!
+
+    /**
+     * count tabulations need for indent
+     */
+    private static int countOfTabs = 0;//clear!!!!!!
+
+    /**
      * Handle the input character and write result in the output stream
+     * @param indent current indent
      * @param out output stream
      * @param readChar input character for handle
-     * @param style class auxiliary variables
      * @throws HandlerException thrown if any errors occur handling
-     * @throws CloserException thrown if any errors occur closing
-     * @throws WriterException thrown if any errors occur writing
      */
-    public abstract void handle(Writable out, StylisationOfCode style, char readChar) throws HandlerException,
-            CloserException, WriterException;
+    public abstract void handle(Writable out, Indent indent, char readChar) throws HandlerException;
 
     /**
      * Check flags from class StylisationOfCode
@@ -33,23 +40,33 @@ public abstract class Handler {
     }
 
     /**
-     * Write tabulations in output stream
+     * Write indent in output stream
      * @param out output stream
-     * @param countOfTabs count of tabulation
+     * @param countOfIndent count of indents
      * @throws HandlerException thrown if any errors occur handling
-     * @throws CloserException thrown if any errors occur closing
-     * @throws WriterException thrown if any errors occur writing
      */
-    protected void writeTabs(final Writable out, final int countOfTabs) throws CloserException, WriterException,
-            HandlerException {
+    protected void writeIndent(final Writable out, final int countOfIndent) throws HandlerException {
         try {
             for (int i = 0; i < countOfTabs; i++) {
-                out.writeChar('\t');
+                out.writeChar(' ');
             }
         } catch (WriterException e) {
             throw new HandlerException(e);
-        } catch (CloserException e) {
-            throw new HandlerException(e);
         }
+    }
+    public static char getBuffer() {
+        return buffer;
+    }
+
+    public static void setBuffer(final char buffer) {
+        Handler.buffer = buffer;
+    }
+
+    public static int getCountOfTabs() {
+        return countOfTabs;
+    }
+
+    public static void setCountOfTabs(int countOfTabs) {
+        Handler.countOfTabs = countOfTabs;
     }
 }

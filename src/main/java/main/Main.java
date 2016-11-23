@@ -30,9 +30,7 @@ public final class Main {
      */
     public static void main(final String[] args) throws FormatException {
         try {
-            String s = "       public char firstChar(final String s) throws MyException{          " +
-                    "  char     first; //single line\n        if(s!=null){  first = s.charAt(0);" +
-                    "/*//*****{  ' '   }comment     *\n\tmultiline**/return first;}throw new MyException();}";
+            String s = "main(){//hello!\nString s = \" {  ; \n } \";char c= '\n';a;b;}";
             Readable in = new StringReader(s);
             StringWriter out = new StringWriter("");
             Formatable formatter = new Formatter();

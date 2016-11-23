@@ -1,21 +1,19 @@
-package handler.inheritors;
+package handler.defaultCondition;
 
-import closer.CloserException;
-import formatter.StylisationOfCode;
 import handler.Handler;
 import handler.HandlerException;
+import handler.Indent;
 import writer.Writable;
 import writer.WriterException;
 
 /**
  * Handler for other characters.
  */
-public class OtherCharacterHandler extends Handler {
+public class DefaultHandler extends Handler {
     @Override
-    public void handle(final Writable out, final StylisationOfCode style, final char readChar) throws HandlerException,
-            CloserException, WriterException {
+    public void handle(final Writable out, final Indent indent, final char readChar) throws HandlerException {
         try {
-            if (!needHandleCode(style)) {
+            /*if (!needHandleCode(style)) {
                 out.writeChar(readChar);
                 return;
             }
@@ -25,10 +23,9 @@ public class OtherCharacterHandler extends Handler {
             }
             out.writeChar(readChar);
             style.setBuffer(readChar);
-            style.setNeedCloseBracket(false);
+            style.setNeedCloseBracket(false);*/
+            out.writeChar(readChar);
         } catch (WriterException e) {
-            throw new HandlerException(e);
-        } catch (CloserException e) {
             throw new HandlerException(e);
         }
     }

@@ -1,4 +1,4 @@
 /**
- * The package contains class Table.
+ * The package contains classes MapForCondition.
  */
 package table;

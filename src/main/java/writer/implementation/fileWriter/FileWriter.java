@@ -22,9 +22,8 @@ public class FileWriter implements Writable, Closeable {
      * The constructor for the string
      * @param fileName is name of output file
      * @throws WriterException thrown if any errors occur writing
-     * @throws CloserException thrown if any errors occur closing
      */
-    public FileWriter(final String fileName) throws WriterException, CloserException {
+    public FileWriter(final String fileName) throws WriterException {
         try {
             outputFile = new FileOutputStream(fileName);
         } catch (FileNotFoundException e) {
@@ -32,11 +31,15 @@ public class FileWriter implements Writable, Closeable {
         }
     }
     @Override
-    public final void writeChar(final char c) throws WriterException, CloserException {
+    public final void writeChar(final char c) throws WriterException {
         try {
             outputFile.write(c);
         } catch (IOException e) {
-            this.close();
+            try {
+                this.close();
+            } catch (CloserException e1) {
+                throw new WriterException(e1);
+            }
             throw new WriterException(e);
         }
     }
