@@ -27,16 +27,15 @@ public class Formatter implements Formatable {
             Indent indent = new Indent();
             ConditionManager conditionManager = new ConditionManager(indent);
             ICondition condition = conditionManager.getInitialCondition();
-            char readChar;
+            Character readChar;
             while (!in.isEnd()) {
                 readChar = in.readChar();
                 condition.execute(out, readChar);
                 condition = conditionManager.getNextCondition(condition, readChar);
             }
-            /*
-            if (style.getCountOfTabs() != 0) {
-                throw new HandlerException(new Throwable("error handle: incorrect number of braces"));
-            }*/
+            if (indent.getCurrentIndent() != 0) {
+                throw new ConditionException("error handle: incorrect number of braces", new Throwable());
+            }
         } catch (ReaderException e) {
             throw new FormatException(e);
         } catch (ConditionException e) {

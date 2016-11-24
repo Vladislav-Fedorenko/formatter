@@ -1,4 +1,4 @@
-package handler.defaultCondition;
+package handler.indentCondition;
 
 import handler.Handler;
 import handler.HandlerException;
@@ -7,14 +7,14 @@ import writer.Writable;
 import writer.WriterException;
 
 /**
- * Handler for character of new line - '\n'.
+ * Handler for indent.
  */
-public class CharOfNewLineHandler extends Handler {
+public class IndentHandler extends Handler {
     @Override
     public void handle(final Writable out, final Indent indent, final char readChar) throws HandlerException {
         try {
+            writeIndent(out, indent.getSPACES());
             out.writeChar(readChar);
-            writeIndent(out, (indent.getCurrentIndent() - 1) * indent.getSPACES());
         } catch (WriterException e) {
             throw new HandlerException(e);
         }

@@ -1,4 +1,4 @@
-package handler.defaultCondition;
+package handler.multiLineCommentCondition;
 
 import handler.Handler;
 import handler.HandlerException;
@@ -7,13 +7,16 @@ import writer.Writable;
 import writer.WriterException;
 
 /**
- * Handler for slash - ' '.
+ * Handler '\n' in multi line comment.
  */
-public class SpaceHandler extends Handler {
+public class CharNewLineInMultiLineCommentHandler extends Handler {
     @Override
     public void handle(final Writable out, final Indent indent, final char readChar) throws HandlerException {
         try {
             out.writeChar(readChar);
+            writeIndent(out, indent.getCurrentIndent() * indent.getSPACES());
+            out.writeChar('*');
+            out.writeChar(' ');
         } catch (WriterException e) {
             throw new HandlerException(e);
         }

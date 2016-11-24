@@ -1,4 +1,4 @@
 /**
- * The package contains defaultCondition of the abstract class Handler.
+ * The package contains handlers for default condition.
  */
 package handler.defaultCondition;

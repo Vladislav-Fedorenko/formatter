@@ -18,6 +18,7 @@ public class SingleLineCommentCondition implements ICondition {
     /**
      * Constructor
      * create map for code in single line comments condition and set handler for character
+     * @param indent current indent
      */
     public SingleLineCommentCondition(final Indent indent) {
         mapForSingleLineCommentCondition = new MapForSingleLineCommentCondition();

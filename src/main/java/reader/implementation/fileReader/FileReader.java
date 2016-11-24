@@ -2,11 +2,14 @@ package reader.implementation.fileReader;
 
 import closer.Closeable;
 import closer.CloserException;
-
 import reader.Readable;
 import reader.ReaderException;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * The class for work with the thread from the file
@@ -44,6 +47,11 @@ public class FileReader implements Readable, Closeable {
         try {
             return (char) inputFile.read();
         } catch (IOException e) {
+            try {
+                this.close();
+            } catch (CloserException e1) {
+                throw new ReaderException(e1);
+            }
             throw new ReaderException(e);
         }
     }
@@ -53,6 +61,11 @@ public class FileReader implements Readable, Closeable {
         try {
             return !(inputFile.available() > 0);
         } catch (IOException e) {
+            try {
+                this.close();
+            } catch (CloserException e1) {
+                throw new ReaderException(e1);
+            }
             throw new ReaderException(e);
         }
     }

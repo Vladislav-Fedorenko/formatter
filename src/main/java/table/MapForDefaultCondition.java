@@ -1,7 +1,11 @@
 package table;
 
 import handler.Handler;
-import handler.defaultCondition.*;
+import handler.defaultCondition.CharOfNewLineHandler;
+import handler.defaultCondition.CloseBracketHandler;
+import handler.defaultCondition.OpenBracketHandler;
+import handler.defaultCondition.SemicolonHandler;
+import handler.defaultCondition.DefaultHandler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +29,6 @@ public class MapForDefaultCondition {
         map.put('}', new CloseBracketHandler());
         map.put('{', new OpenBracketHandler());
         map.put(';', new SemicolonHandler());
-        map.put(' ', new SpaceHandler());
     }
     /**
      * call method map.get(Key k)

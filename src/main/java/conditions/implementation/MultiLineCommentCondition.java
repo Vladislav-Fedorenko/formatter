@@ -18,6 +18,7 @@ public class MultiLineCommentCondition implements ICondition {
     /**
      * Constructor
      * create map for code in multi line comments condition and set handler for character
+     * @param indent current indent
      */
     public MultiLineCommentCondition(final Indent indent) {
         mapForMultiLineCommentCondition = new MapForMultiLineCommentCondition();

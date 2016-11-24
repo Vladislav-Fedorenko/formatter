@@ -15,7 +15,7 @@ public class BeginOfCommentCondition implements ICondition {
         try {
             out.writeChar(c);
         } catch (WriterException e) {
-            throw new ConditionException("error write in BeginOfCondition", e);
+            throw new ConditionException("error of write in BeginOfCondition", e);
         }
     }
 }

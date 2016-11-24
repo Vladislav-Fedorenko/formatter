@@ -4,18 +4,26 @@ package conditions;
  * Class for data for next condition.
  *  @param <T> parameter
  */
-public class DataForNextCondition <T> {
+class DataForNextCondition <T> {
     private ICondition currentCondition;
-    private T current;
+    private T currentParam;
 
     /**
-     * Default constructor
-     * @param currentCondition current condition of code
-     * @param current current parameter
+     * Constructor on the condition and on the current parameter
+     * @param currentCondition currentParam condition of code
+     * @param current currentParam parameter
      */
-    public DataForNextCondition(final ICondition currentCondition, final T current) {
+    DataForNextCondition(final ICondition currentCondition, final T current) {
         this.currentCondition = currentCondition;
-        this.current = current;
+        this.currentParam = current;
+    }
+
+    /**
+     * Constructor on the condition
+     * @param currentCondition current condition
+     */
+    DataForNextCondition(final ICondition currentCondition) {
+        this.currentCondition = currentCondition;
     }
 
     @Override
@@ -30,14 +38,14 @@ public class DataForNextCondition <T> {
         DataForNextCondition<?> that = (DataForNextCondition<?>) o;
 
         return currentCondition != null ? currentCondition.equals(that.currentCondition) : that.currentCondition == null
-                && (current != null ? current.equals(that.current) : that.current == null);
+                && (currentParam != null ? currentParam.equals(that.currentParam) : that.currentParam == null);
 
     }
 
     @Override
     public int hashCode() {
         int result = currentCondition != null ? currentCondition.hashCode() : 0;
-        result = 31 * result + (current != null ? current.hashCode() : 0);
+        result = 31 * result + (currentParam != null ? currentParam.hashCode() : 0);
         return result;
     }
 }

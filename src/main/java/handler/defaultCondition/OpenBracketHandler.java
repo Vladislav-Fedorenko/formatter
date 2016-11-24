@@ -14,21 +14,10 @@ public class OpenBracketHandler extends Handler {
     @Override
     public void handle(final Writable out, final Indent indent, final char readChar) throws HandlerException {
         try {
-            /*if (!needHandleCode(style)) {
-                out.writeChar(readChar);
-                return;
-            }
-            style.incCountOfTabs();
-            out.writeChar(' ');
-            out.writeChar(readChar);
-            out.writeChar('\n');
-            writeTabs(out, style.getCountOfTabs());
-            style.setBuffer('\t');*/
             indent.incCurrentIndent();
-            out.writeChar(' ');
             out.writeChar(readChar);
             out.writeChar('\n');
-            writeIndent(out, indent.getCurrentIndent() * indent.getCOUNTSPACES() - 1);
+            writeIndent(out, (indent.getCurrentIndent() - 1) * indent.getSPACES());
         } catch (WriterException e) {
             throw new HandlerException(e);
         }

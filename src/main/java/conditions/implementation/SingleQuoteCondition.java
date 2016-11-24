@@ -18,6 +18,7 @@ public class SingleQuoteCondition implements ICondition {
     /**
      * Constructor
      * create map for code in single quotes condition and set handler for character
+     * @param indent current indent
      */
     public SingleQuoteCondition(final Indent indent) {
         mapForDoubleQuoteCondition = new MapForSingleQuoteCondition();

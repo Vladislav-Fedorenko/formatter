@@ -6,7 +6,7 @@ package handler;
 public class Indent {
 
     private int currentIndent;
-    private final int COUNTOFSPACES = 4;
+    private final int SPACES = 4;
 
     /**
      * Default constructor
@@ -32,7 +32,7 @@ public class Indent {
         return currentIndent;
     }
 
-    public int getCOUNTSPACES() {
-        return COUNTOFSPACES;
+    public int getSPACES() {
+        return SPACES;
     }
 }

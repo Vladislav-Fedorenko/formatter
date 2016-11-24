@@ -19,6 +19,7 @@ public class DoubleQuoteCondition implements ICondition {
     /**
      * Constructor
      * create map for code in double quotes condition and set handler for character
+     * @param indent current indent
      */
     public DoubleQuoteCondition(final Indent indent) {
         mapForDoubleQuoteCondition = new MapForDoubleQuoteCondition();

@@ -19,6 +19,7 @@ public class DefaultCondition implements ICondition {
     /**
      * Constructor
      * create map for default condition and set handler for character
+     * @param indent current indent
      */
     public DefaultCondition(final Indent indent) {
         mapForDefaultCondition = new MapForDefaultCondition();

@@ -14,8 +14,9 @@ public class EndOfCommentCondition implements ICondition {
     public void execute(final Writable out, final char c) throws ConditionException {
         try {
             out.writeChar(c);
+            out.writeChar('\n');
         } catch (WriterException e) {
-            throw new ConditionException("error write in EndOfCondition", e);
+            throw new ConditionException("error of write in EndOfCondition", e);
         }
     }
 }

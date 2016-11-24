@@ -1,7 +1,6 @@
 package table;
 
 import handler.Handler;
-import handler.defaultCondition.CharOfNewLineHandler;
 import handler.defaultCondition.DefaultHandler;
 
 import java.util.HashMap;

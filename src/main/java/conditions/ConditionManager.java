@@ -1,6 +1,13 @@
 package conditions;
 
-import conditions.implementation.*;
+import conditions.implementation.DefaultCondition;
+import conditions.implementation.DoubleQuoteCondition;
+import conditions.implementation.MultiLineCommentCondition;
+import conditions.implementation.SingleQuoteCondition;
+import conditions.implementation.BeginOfCommentCondition;
+import conditions.implementation.EndOfCommentCondition;
+import conditions.implementation.SingleLineCommentCondition;
+import conditions.implementation.IndentCondition;
 import handler.Indent;
 
 import java.util.HashMap;
@@ -27,17 +34,22 @@ public class ConditionManager {
         ICondition singleLineCommentCondition = new SingleLineCommentCondition(indent);
         ICondition beginOfCommentCondition = new BeginOfCommentCondition();
         ICondition endOfCommentCondition = new EndOfCommentCondition();
+        ICondition indentCondition = new IndentCondition(indent);
 
         map.put(new DataForNextCondition<Character>(defaultCondition, '/'), beginOfCommentCondition);
         map.put(new DataForNextCondition<Character>(defaultCondition, '\"'), doubleQuoteCondition);
         map.put(new DataForNextCondition<Character>(defaultCondition, '\''), singleQuoteCondition);
+        map.put(new DataForNextCondition<Character>(defaultCondition, '{'), indentCondition);
+        map.put(new DataForNextCondition<Character>(defaultCondition, ';'), indentCondition);
         map.put(new DataForNextCondition<Character>(doubleQuoteCondition, '\"'), defaultCondition);
         map.put(new DataForNextCondition<Character>(singleQuoteCondition, '\''), defaultCondition);
         map.put(new DataForNextCondition<Character>(multiLineCommentCondition, '*'), endOfCommentCondition);
-        map.put(new DataForNextCondition<Character>(singleLineCommentCondition, '\n'), defaultCondition);
+        map.put(new DataForNextCondition<Character>(singleLineCommentCondition, '\n'), indentCondition);
         map.put(new DataForNextCondition<Character>(beginOfCommentCondition, '/'), singleLineCommentCondition);
         map.put(new DataForNextCondition<Character>(beginOfCommentCondition, '*'), multiLineCommentCondition);
-        map.put(new DataForNextCondition<Character>(endOfCommentCondition, '/'), defaultCondition);
+        map.put(new DataForNextCondition<Character>(endOfCommentCondition, '/'), indentCondition);
+        map.put(new DataForNextCondition<Character>(indentCondition, '/'), beginOfCommentCondition);
+        map.put(new DataForNextCondition<Character>(indentCondition), defaultCondition);
     }
 
     /**
@@ -50,6 +62,9 @@ public class ConditionManager {
     public ICondition getNextCondition(final ICondition currentCondition, final char c) {
         if (map.containsKey(new DataForNextCondition<Character>(currentCondition, c))) {
             return map.get(new DataForNextCondition<Character>(currentCondition, c));
+        }
+        if (map.containsKey(new DataForNextCondition<Character>(currentCondition))) {
+            return map.get(new DataForNextCondition<Character>(currentCondition));
         }
         return currentCondition;
     }
