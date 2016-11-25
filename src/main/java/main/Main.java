@@ -30,7 +30,8 @@ public final class Main {
      */
     public static void main(final String[] args) throws FormatException {
         try {
-            String s = "main() {/*hello,\n bitch!\n oxxxymiron*/String s = \"{ ; }\";char c = '}';if(a == 5) {b=6;}a;b;}";
+            String s = "main() {/*hello,\n friend!\n how are you?*/String s = \"{ ; }\";" +
+                    "char c = '}';if(a == 5) {b=6;}a;b;}";
             Readable in = new StringReader(s);
             StringWriter out = new StringWriter("");
             Formatable formatter = new Formatter();
