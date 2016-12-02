@@ -14,4 +14,6 @@ public interface Formatable {
      * @throws FormatException thrown if any errors occur formatting
      */
     void format(Readable<Character> in, Writable<Character> out) throws FormatException;
+
+
 }
