@@ -11,9 +11,9 @@ import it.sevenbits.writer.WriterException;
  */
 public class CharOfNewLineHandler extends Handler {
     @Override
-    public void handle(final Writable<Character> out, final Indent indent, final char readChar) throws HandlerException {
+    public void handle(final Writable<String> out, final Indent indent, final String s) throws HandlerException {
         try {
-            out.write(readChar);
+            out.write(s);
             writeIndent(out, (indent.getCurrentIndent() - 1) * indent.getSpaces());
         } catch (WriterException e) {
             throw new HandlerException("error of write in CharNewLineHandler", e);

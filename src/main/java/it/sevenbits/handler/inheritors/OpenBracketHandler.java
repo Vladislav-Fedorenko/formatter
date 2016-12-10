@@ -12,11 +12,11 @@ import it.sevenbits.writer.WriterException;
 public class OpenBracketHandler extends Handler {
 
     @Override
-    public void handle(final Writable<Character> out, final Indent indent, final char readChar) throws HandlerException {
+    public void handle(final Writable<String> out, final Indent indent, final String s) throws HandlerException {
         try {
             indent.incCurrentIndent();
-            out.write(readChar);
-            out.write('\n');
+            out.write(s);
+            out.write("\n");
             writeIndent(out, (indent.getCurrentIndent() - 1) * indent.getSpaces());
         } catch (WriterException e) {
             throw new HandlerException("error of write in OpenBracketHandler", e);

@@ -11,10 +11,10 @@ import it.sevenbits.writer.WriterException;
  */
 public class IndentHandler extends Handler {
     @Override
-    public void handle(final Writable<Character> out, final Indent indent, final char readChar) throws HandlerException {
+    public void handle(final Writable<String> out, final Indent indent, final String s) throws HandlerException {
         try {
             writeIndent(out, indent.getSpaces());
-            out.write(readChar);
+            out.write(s);
         } catch (WriterException e) {
             throw new HandlerException("error of write in IndentHandler", e);
         }

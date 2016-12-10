@@ -5,7 +5,7 @@ package it.sevenbits.states;
  *  @param <T> parameter
  *  @param <U> parameter
  */
-class Pair<T, U> {
+public class Pair<T, U> {
     private T param1;
     private U param2;
 
@@ -14,7 +14,7 @@ class Pair<T, U> {
      * @param param1 variable type of T
      * @param param2 variable type of U
      */
-    Pair(final T param1, final U param2) {
+    public Pair(final T param1, final U param2) {
         this.param1 = param1;
         this.param2 = param2;
     }
@@ -23,7 +23,7 @@ class Pair<T, U> {
      * Constructor with one parameter
      * @param param1 variable type of T
      */
-    Pair(final T param1) {
+    public Pair(final T param1) {
         this.param1 = param1;
     }
 

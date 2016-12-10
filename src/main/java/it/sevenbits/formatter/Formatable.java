@@ -1,6 +1,7 @@
 package it.sevenbits.formatter;
 
 import it.sevenbits.reader.Readable;
+import it.sevenbits.reader.implementation.lexer.token.Token;
 import it.sevenbits.writer.Writable;
 
 /**
@@ -13,7 +14,7 @@ public interface Formatable {
      * @param out output stream
      * @throws FormatException thrown if any errors occur formatting
      */
-    void format(Readable<Character> in, Writable<Character> out) throws FormatException;
+    void format(Readable<Token> in, Writable<String> out) throws FormatException;
 
 
 }

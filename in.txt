@@ -1,4 +1,4 @@
 main() {//one line comment
-while() {int i;}/*hello,
-friend!
-how are you?*/String s = "{\" ; }";char c = '\'';if (a == 5) {b=6;}a;b;}
+while() {int ij                ;}/*hello, friend!
+
+how are you?*/String s = "{\" ; }";char c = '\'';if(a == 5) {b=6;}a;b;}

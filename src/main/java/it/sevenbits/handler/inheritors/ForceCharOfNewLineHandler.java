@@ -7,9 +7,9 @@ import it.sevenbits.writer.Writable;
 import it.sevenbits.writer.WriterException;
 
 /**
- * Handler for semicolon - ';'.
+ * Handler '\n' in speciality situation.
  */
-public class SemicolonHandler extends Handler {
+public class ForceCharOfNewLineHandler extends Handler {
     @Override
     public void handle(final Writable<String> out, final Indent indent, final String s) throws HandlerException {
         try {
@@ -17,7 +17,7 @@ public class SemicolonHandler extends Handler {
             out.write("\n");
             writeIndent(out, (indent.getCurrentIndent() - 1) * indent.getSpaces());
         } catch (WriterException e) {
-            throw new HandlerException("error of write in SemicolonHandler", e);
+            throw new HandlerException("error of write in ForceCharOfNewLineHandler", e);
         }
     }
 }

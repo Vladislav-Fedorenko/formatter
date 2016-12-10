@@ -11,14 +11,13 @@ import it.sevenbits.writer.WriterException;
  */
 public class CharOfNewLineInMultiLineCommentHandler extends Handler {
     @Override
-    public void handle(final Writable<Character> out, final Indent indent, final char readChar) throws HandlerException {
+    public void handle(final Writable<String> out, final Indent indent, final String s) throws HandlerException {
         try {
-            out.write(readChar);
+            out.write(s);
             writeIndent(out, indent.getCurrentIndent() * indent.getSpaces());
-            out.write('*');
-            out.write(' ');
+            out.write(" * ");
         } catch (WriterException e) {
-            throw new HandlerException("error of write in CharOfNewLineInMultiLineCommentHandler", e);
+            throw new HandlerException("error of write in CharNewLineInMultiLineCommentHandler", e);
         }
     }
 }
