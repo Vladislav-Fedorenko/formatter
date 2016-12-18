@@ -1,4 +1,4 @@
 /**
- * The package contains class Token.
+ * The package contains classes Token and TokenBuilder.
  */
 package it.sevenbits.reader.implementation.lexer.token;

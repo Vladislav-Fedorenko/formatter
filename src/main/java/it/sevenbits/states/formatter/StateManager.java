@@ -16,27 +16,6 @@ import it.sevenbits.states.State;
 import java.util.HashMap;
 import java.util.Map;
 
-/*import it.sevenbits.handler.inheritors.ForceCharOfNewLineHandler;
-import it.sevenbits.handler.inheritors.CharOfNewLineHandler;
-import it.sevenbits.handler.inheritors.CloseBracketHandler;
-import it.sevenbits.handler.inheritors.DefaultHandler;
-import it.sevenbits.handler.inheritors.IndentHandler;
-import it.sevenbits.handler.inheritors.OpenBracketHandler;
-import it.sevenbits.handler.inheritors.QuotesHandler;
-import it.sevenbits.handler.inheritors.SemicolonHandler;
-
-
-import it.sevenbits.states.formatter.implementation.DefaultState;
-import it.sevenbits.states.formatter.implementation.BeginOfCommentState;
-import it.sevenbits.states.formatter.implementation.DoubleQuoteState;
-import it.sevenbits.states.formatter.implementation.EndOfCommentState;
-import it.sevenbits.states.formatter.implementation.EscapeSequenceInSingleQuoteState;
-import it.sevenbits.states.formatter.implementation.EscapeSequenceInDoubleQuoteState;
-import it.sevenbits.states.formatter.implementation.IndentState;
-import it.sevenbits.states.formatter.implementation.MultiLineCommentState;
-import it.sevenbits.states.formatter.implementation.SingleLineCommentState;
-import it.sevenbits.states.formatter.implementation.SingleQuoteState;*/
-
 /**
  * Manager of states.
  */
@@ -143,5 +122,4 @@ public class StateManager {
         }
         return new DefaultHandler();
     }
-
 }

@@ -4,6 +4,7 @@ import it.sevenbits.action.Action;
 import it.sevenbits.reader.Readable;
 import it.sevenbits.reader.ReaderException;
 import it.sevenbits.reader.implementation.lexer.token.Token;
+import it.sevenbits.reader.implementation.lexer.token.TokenBuilder;
 import it.sevenbits.states.State;
 import it.sevenbits.states.lexer.StateOfLexerManager;
 
@@ -12,9 +13,9 @@ import it.sevenbits.states.lexer.StateOfLexerManager;
  */
 public class Lexer implements Readable<Token> {
     private Readable<Character> in;
-    private StringBuilder lexeme = new StringBuilder();
     private StateOfLexerManager stateOfLexerManager;
     private State state;
+    private TokenBuilder tokenBuilder;
 
     /**
      * Constructor
@@ -24,57 +25,36 @@ public class Lexer implements Readable<Token> {
         this.in = in;
         stateOfLexerManager = new StateOfLexerManager();
         state = stateOfLexerManager.getInitialState();
+        tokenBuilder = new TokenBuilder(new StringBuilder());
     }
 
     @Override
     public Token read() throws ReaderException {
         Action action;
-        char readChar = 0;
+        char readChar;
         String currentLexeme;
+        /*write map for state(return with repeat*/
         if (state.equals(new State("return with repeat"))) {
-            currentLexeme = this.getLexeme();
-            this.newLexeme(readChar);
+            currentLexeme = tokenBuilder.toString();
+            tokenBuilder.setTokenForReturn();
             state = stateOfLexerManager.getInitialState();
             return new Token(currentLexeme);
         }
         while (!in.isEnd()) {
             readChar = in.read();
             action = stateOfLexerManager.getAction(state, readChar);
-            currentLexeme = action.execute(this, readChar);
+            action.execute(tokenBuilder, readChar);
             state = stateOfLexerManager.getNextState(state, readChar);
-            if (currentLexeme != null) {
-                return new Token(currentLexeme);
+            if (action.returnToken()) {
+                return new Token(tokenBuilder.getStringForReturn());
             }
         }
-        return new Token(lexeme.toString());
+        return new Token(tokenBuilder.toString());
     }
     @Override
     public boolean isEnd() throws ReaderException {
         return in.isEnd();
     }
 
-    /**
-     * call method StringBuilder.append(char c)
-     * @param c input char
-     */
-    public void append(final char c) {
-        lexeme.append(c);
-    }
-
-    /**
-     * Method create new lexeme
-     * @param c input char
-     */
-    public void newLexeme(final char c) {
-        lexeme = new StringBuilder("" + c);
-    }
-
-    /**
-     * Get lexeme
-     * @return current lexeme
-     */
-    public String getLexeme() {
-        return lexeme.toString();
-    }
 
 }

@@ -1,4 +1,6 @@
-main() {//one line comment
-while() {int ij                ;}/*hello, friend!
-
-how are you?*/String s = "{\" ; }";char c = '\'';if(a == 5) {b=6;}a;b;}
+main() { //one line comment
+while(true) { String s = "/n  { }"; break; }
+int a = 5;
+if (a==5) { char c = 'a'; }
+/* multi line
+comment*/ }

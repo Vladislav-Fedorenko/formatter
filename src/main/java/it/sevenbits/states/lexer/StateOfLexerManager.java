@@ -56,6 +56,9 @@ public class StateOfLexerManager {
         mapOfState.put(new Pair<State, Character>(continueState, '/'), returnWithRepeatState);
         mapOfState.put(new Pair<State, Character>(continueState, '*'), returnWithRepeatState);
 
+        /*
+            Handlers
+        */
         mapOfAction = new HashMap<Pair<State, Character>, Action>();
         mapOfAction.put(new Pair<State, Character>(appendState, '{'), new ReturnAction());
         mapOfAction.put(new Pair<State, Character>(appendState, '}'), new ReturnAction());

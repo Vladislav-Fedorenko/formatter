@@ -1,17 +1,24 @@
 package it.sevenbits.action;
 
-import it.sevenbits.reader.Readable;
-import it.sevenbits.reader.implementation.lexer.token.Token;
+import it.sevenbits.reader.implementation.lexer.token.TokenBuilder;
 
 /**
  * Interface for anything action.
  */
 public interface Action {
+    /*transfer in package handler*/
     /**
      * Method for add char in current token
-     * @param in stream containing token
+     * @param tokenBuilder class containing token
      * @param c input character
-     * @return token
      */
-    String execute(Readable<Token> in, char c);
+    void execute(TokenBuilder tokenBuilder, char c);
+    /*replacement Readable<Token> on  StringBuilder*/
+
+    /**
+     * method-indicator of the end of token
+     * @return true if is end of token
+     *          false else
+     */
+    boolean returnToken();
 }
