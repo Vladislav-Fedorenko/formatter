@@ -1,14 +1,14 @@
 package it.sevenbits.states.formatter;
 
-import it.sevenbits.handler.Handler;
-import it.sevenbits.handler.inheritors.ForceCharOfNewLineHandler;
-import it.sevenbits.handler.inheritors.CharOfNewLineHandler;
-import it.sevenbits.handler.inheritors.CloseBracketHandler;
-import it.sevenbits.handler.inheritors.DefaultHandler;
-import it.sevenbits.handler.inheritors.IndentHandler;
-import it.sevenbits.handler.inheritors.OpenBracketHandler;
-import it.sevenbits.handler.inheritors.CharOfNewLineInMultiLineCommentHandler;
-import it.sevenbits.handler.inheritors.SemicolonHandler;
+import it.sevenbits.handler.formatter.Handler;
+import it.sevenbits.handler.formatter.inheritors.ForceCharOfNewLineHandler;
+import it.sevenbits.handler.formatter.inheritors.CharOfNewLineHandler;
+import it.sevenbits.handler.formatter.inheritors.CloseBracketHandler;
+import it.sevenbits.handler.formatter.inheritors.DefaultHandler;
+import it.sevenbits.handler.formatter.inheritors.IndentHandler;
+import it.sevenbits.handler.formatter.inheritors.OpenBracketHandler;
+import it.sevenbits.handler.formatter.inheritors.CharOfNewLineInMultiLineCommentHandler;
+import it.sevenbits.handler.formatter.inheritors.SemicolonHandler;
 import it.sevenbits.reader.implementation.lexer.token.Token;
 import it.sevenbits.states.Pair;
 import it.sevenbits.states.State;
@@ -77,7 +77,7 @@ public class StateManager {
         mapOfHandlers.put(new Pair<State, Token>(singleLineCommentState, new Token("\n")), new CharOfNewLineHandler());
         mapOfHandlers.put(new Pair<State, Token>(escapeSequenceInDoubleQuoteState, new Token("\"")), new DefaultHandler());
         mapOfHandlers.put(new Pair<State, Token>(escapeSequenceInSingleQuoteState, new Token("\'")), new DefaultHandler());
-        mapOfHandlers.put(new Pair<State, Token>(indentState, new Token("{")), new CloseBracketHandler());
+        mapOfHandlers.put(new Pair<State, Token>(indentState, new Token("}")), new CloseBracketHandler());
         mapOfHandlers.put(new Pair<State, Token>(indentState, new Token("")), new DefaultHandler());
         mapOfHandlers.put(new Pair<State, Token>(indentState), new IndentHandler());
     }

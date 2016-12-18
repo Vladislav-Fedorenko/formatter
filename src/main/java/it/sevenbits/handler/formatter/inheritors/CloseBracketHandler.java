@@ -1,8 +1,8 @@
-package it.sevenbits.handler.inheritors;
+package it.sevenbits.handler.formatter.inheritors;
 
-import it.sevenbits.handler.Handler;
-import it.sevenbits.handler.HandlerException;
-import it.sevenbits.handler.Indent;
+import it.sevenbits.handler.formatter.Handler;
+import it.sevenbits.handler.formatter.HandlerException;
+import it.sevenbits.handler.formatter.Indent;
 import it.sevenbits.writer.Writable;
 import it.sevenbits.writer.WriterException;
 
@@ -17,7 +17,11 @@ public class CloseBracketHandler extends Handler {
             indent.decCurrentIndent();
             out.write(s);
             out.write("\n");
-            writeIndent(out, (indent.getCurrentIndent() * indent.getSpaces()));
+            if (indent.getCurrentIndent() < 1) {
+                writeIndent(out, ((indent.getCurrentIndent()) * indent.getSpaces()));
+                return;
+            }
+            writeIndent(out, ((indent.getCurrentIndent() - 1) * indent.getSpaces()));
         } catch (WriterException e) {
             throw new HandlerException("error of write in CloseBracketHandler", e);
         }

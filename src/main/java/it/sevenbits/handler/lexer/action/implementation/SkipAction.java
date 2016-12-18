@@ -1,17 +1,16 @@
-package it.sevenbits.action.implementation;
+package it.sevenbits.handler.lexer.action.implementation;
 
-import it.sevenbits.action.Action;
+import it.sevenbits.handler.lexer.action.Action;
 import it.sevenbits.reader.implementation.lexer.token.TokenBuilder;
 
 /**
- * Class for add char in lexeme.
+ * Class for skip char.
  */
-public class AddAction implements Action {
+public class SkipAction implements Action {
     private boolean returnToken;
 
     @Override
     public void execute(final TokenBuilder tokenBuilder, final char c) {
-        tokenBuilder.append(c);
         returnToken = false;
     }
 

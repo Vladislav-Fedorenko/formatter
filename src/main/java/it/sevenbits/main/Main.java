@@ -11,12 +11,17 @@ import it.sevenbits.reader.implementation.lexer.Lexer;
 import it.sevenbits.reader.implementation.lexer.token.Token;
 import it.sevenbits.writer.WriterException;
 import it.sevenbits.writer.implementation.filewriter.FileWriter;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 /**
  * Main class
  */
 public final class Main {
-
+    /**
+     * LOGGER
+     */
+    private static final Logger LOGGER =
+                LoggerFactory.getLogger(Main.class);
     /**
      * Default constructor.
      */
@@ -30,23 +35,19 @@ public final class Main {
      */
     public static void main(final String[] args) throws FormatException {
         try {
-            /*String s = "main() {*//*hello,\n" +
-                    " friend!\n" +
-                    " how are you?*//*if (a == 5) {while (true) {b++;}b=6;}String s = \"{ ; }\";" +
-                    "char c = '{';a;b;}";
-            Readable<Character> in = new StringReader(s);
-            StringWriter out = new StringWriter("");
-            Readable<Token> lexer = new Lexer(in);
-            formatter.format(lexer, out);
-            System.out.print(out.toString());*/
+
             try {
                 Formatable formatter = new Formatter();
                 FileReader in = new FileReader(args[0]);
+                LOGGER.info("open file for read");
                 FileWriter out = new FileWriter(args[1]);
+                LOGGER.info("open file for write");
                 Readable<Token> lexer = new Lexer(in);
                 formatter.format(lexer, out);
                 in.close();
+                LOGGER.info("close file for read");
                 out.close();
+                LOGGER.info("close file for write");
             } catch (ReaderException e) {
                 throw new FormatException("error of read in main", e);
             } catch (WriterException e) {

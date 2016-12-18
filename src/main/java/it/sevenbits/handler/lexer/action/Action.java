@@ -1,4 +1,4 @@
-package it.sevenbits.action;
+package it.sevenbits.handler.lexer.action;
 
 import it.sevenbits.reader.implementation.lexer.token.TokenBuilder;
 

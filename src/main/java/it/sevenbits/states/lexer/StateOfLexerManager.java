@@ -1,9 +1,9 @@
 package it.sevenbits.states.lexer;
 
-import it.sevenbits.action.Action;
-import it.sevenbits.action.implementation.AddAction;
-import it.sevenbits.action.implementation.ReturnAction;
-import it.sevenbits.action.implementation.SkipAction;
+import it.sevenbits.handler.lexer.action.Action;
+import it.sevenbits.handler.lexer.action.implementation.AddAction;
+import it.sevenbits.handler.lexer.action.implementation.ReturnAction;
+import it.sevenbits.handler.lexer.action.implementation.SkipAction;
 import it.sevenbits.states.Pair;
 import it.sevenbits.states.State;
 
@@ -25,8 +25,7 @@ public class StateOfLexerManager {
         appendState = new State("append");
         State skipState = new State("skip"),
                 continueState = new State("continue"),
-                returnWithRepeatState = new State("return with repeat"),
-                returnWithoutRepeatState = new State("return without repeat");
+                returnWithRepeatState = new State("return with repeat");
 
         mapOfState.put(new Pair<State, Character>(appendState, '{'), returnWithRepeatState);
         mapOfState.put(new Pair<State, Character>(appendState, '}'), returnWithRepeatState);
@@ -40,7 +39,7 @@ public class StateOfLexerManager {
         mapOfState.put(new Pair<State, Character>(appendState, '\"'), returnWithRepeatState);
         mapOfState.put(new Pair<State, Character>(appendState, '\''), returnWithRepeatState);
         //mapOfState.put(new Pair<State, Character>(returnWithRepeatState), appendState); not need
-        mapOfState.put(new Pair<State, Character>(returnWithoutRepeatState), appendState);
+        //mapOfState.put(new Pair<State, Character>(returnWithoutRepeatState), appendState);
         mapOfState.put(new Pair<State, Character>(skipState, ' '), skipState);
         mapOfState.put(new Pair<State, Character>(skipState, '\n'), skipState);
         mapOfState.put(new Pair<State, Character>(skipState, '{'), returnWithRepeatState);
@@ -78,7 +77,7 @@ public class StateOfLexerManager {
         mapOfAction.put(new Pair<State, Character>(skipState, ' '), new SkipAction());
         mapOfAction.put(new Pair<State, Character>(skipState, '\n'), new SkipAction());
         mapOfAction.put(new Pair<State, Character>(skipState), new ReturnAction());
-        mapOfAction.put(new Pair<State, Character>(returnWithoutRepeatState), new AddAction());
+        //mapOfAction.put(new Pair<State, Character>(returnWithoutRepeatState), new AddAction());
         mapOfAction.put(new Pair<State, Character>(returnWithRepeatState), new ReturnAction());
         mapOfAction.put(new Pair<State, Character>(continueState, '/'), new AddAction());
         mapOfAction.put(new Pair<State, Character>(continueState, '*'), new AddAction());

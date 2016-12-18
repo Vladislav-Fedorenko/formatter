@@ -1,5 +1,4 @@
 /**
- * The package contains abstract class for handle input character and write him in output stream,
- * his inheritors and generated exception.
+ * the package contains handlers for different machine.
  */
 package it.sevenbits.handler;

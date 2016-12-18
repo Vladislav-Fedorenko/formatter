@@ -1,4 +1,4 @@
-package it.sevenbits.handler;
+package it.sevenbits.handler.formatter;
 
 /**
  * Class for storage info about current indent.

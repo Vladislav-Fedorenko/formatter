@@ -1,8 +1,8 @@
-package it.sevenbits.handler.inheritors;
+package it.sevenbits.handler.formatter.inheritors;
 
-import it.sevenbits.handler.Handler;
-import it.sevenbits.handler.HandlerException;
-import it.sevenbits.handler.Indent;
+import it.sevenbits.handler.formatter.Handler;
+import it.sevenbits.handler.formatter.HandlerException;
+import it.sevenbits.handler.formatter.Indent;
 import it.sevenbits.writer.Writable;
 import it.sevenbits.writer.WriterException;
 

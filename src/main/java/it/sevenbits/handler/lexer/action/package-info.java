@@ -1,4 +1,4 @@
 /**
  * The package contains interface action and its implementation.
  */
-package it.sevenbits.action;
+package it.sevenbits.handler.lexer.action;

@@ -1,4 +1,4 @@
-package it.sevenbits.handler;
+package it.sevenbits.handler.formatter;
 
 /**
  * The exception thrown when any occur handling errors.

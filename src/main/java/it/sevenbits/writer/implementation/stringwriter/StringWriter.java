@@ -6,7 +6,7 @@ import it.sevenbits.writer.Writable;
 /**
  * The class for write thread in string
  */
-public class StringWriter implements Writable<Character> {
+public class StringWriter implements Writable<String> {
     /**
      * tool for work with string
      */
@@ -21,8 +21,8 @@ public class StringWriter implements Writable<Character> {
     }
 
     @Override
-    public final void write(final Character c) {
-        stringBuilder.append(c);
+    public final void write(final String s) {
+        stringBuilder.append(s);
     }
 
     /**

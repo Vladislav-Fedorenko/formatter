@@ -1,6 +1,6 @@
 package it.sevenbits.reader.implementation.lexer;
 
-import it.sevenbits.action.Action;
+import it.sevenbits.handler.lexer.action.Action;
 import it.sevenbits.reader.Readable;
 import it.sevenbits.reader.ReaderException;
 import it.sevenbits.reader.implementation.lexer.token.Token;
@@ -49,11 +49,13 @@ public class Lexer implements Readable<Token> {
                 return new Token(tokenBuilder.getStringForReturn());
             }
         }
-        return new Token(tokenBuilder.toString());
+        currentLexeme = tokenBuilder.toString();
+        tokenBuilder.setTokenForReturn();
+        return new Token(currentLexeme);
     }
     @Override
     public boolean isEnd() throws ReaderException {
-        return in.isEnd();
+        return in.isEnd() && tokenBuilder.toString().equals("");
     }
 
     /**

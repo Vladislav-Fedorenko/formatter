@@ -1,4 +1,4 @@
-package it.sevenbits.handler;
+package it.sevenbits.handler.formatter;
 
 import it.sevenbits.writer.Writable;
 import it.sevenbits.writer.WriterException;
