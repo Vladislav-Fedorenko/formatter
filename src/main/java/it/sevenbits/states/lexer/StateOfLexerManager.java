@@ -55,6 +55,8 @@ public class StateOfLexerManager {
         mapOfState.put(new Pair<State, Character>(skipState), appendState);
         mapOfState.put(new Pair<State, Character>(continueState, '/'), returnWithRepeatState);
         mapOfState.put(new Pair<State, Character>(continueState, '*'), returnWithRepeatState);
+        mapOfState.put(new Pair<State, Character>(continueState), returnWithRepeatState);
+
 
         /*
             Handlers

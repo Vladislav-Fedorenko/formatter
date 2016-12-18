@@ -56,5 +56,11 @@ public class Lexer implements Readable<Token> {
         return in.isEnd();
     }
 
-
+    /**
+     * Method for get current state of lexer
+     * @return current state
+     */
+    public State getCurrentState() {
+        return state;
+    }
 }
